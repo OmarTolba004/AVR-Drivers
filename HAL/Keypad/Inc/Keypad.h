@@ -1,49 +1,52 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *  File:  		  ICU.h
- *  Module:  	  ICU
+ *  File:  		  Keybad.h
+ *  Module:  	  Keybad
  *
- *  Description:  Header file for ICU Module
+ *  Description:  header file for Keybad Module
  *
  *  -------------------------------------------------------------------------------------------------------------------
  *	Author: 	  Omar Tolba
  *	Date:		  04/10/2022
  *********************************************************************************************************************/
+#ifndef KEYBAD_H_
+#define KEYBAD_H_
 
-#ifndef ICU_TYPES_H_
-#define ICU_TYPES_H_
 
 /**********************************************************************************************************************
- *  GLOBAL DATA PROTOTYPES
+ *  Definitions
  *********************************************************************************************************************/
 
+/* Keypad configurations for number of rows and columns */
+#define KEYPAD_NUM_COLS                   4
+#define KEYPAD_NUM_ROWS                   4
 
-typedef enum
-{
-	FALLING = 0 ,
-	RISING = 1 ,
-}ICU_EdgeType;
+/* Keypad Port Configurations */
+#define KEYPAD_ROW_PORT_ID                PORTA_ID
+#define KEYPAD_FIRST_ROW_PIN_ID           0
 
-typedef enum
-{
-	NO_CLOCK    = 0,
-	F_CPU_CLOCK = 1,
-	F_CPU_8     = 2,
-	F_CPU_64    = 3,
-	F_CPU_256   = 4,
-	F_CPU_1024  = 5,
-}ICU_ClockType;
+#define KEYPAD_COL_PORT_ID                PORTA_ID
+#define KEYPAD_FIRST_COL_PIN_ID           4
 
-typedef struct
-{
-	ICU_ClockType clockType;
-	ICU_EdgeType edgeType;
-}ICU_ConfigType;
-
-
-#endif /* ICU_TYPES_H_ */
+/* Keypad button logic configurations */
+#define KEYPAD_BUTTON_PRESSED            LOGIC_LOW
+#define KEYPAD_BUTTON_RELEASED           LOGIC_HIGH
 
 /**********************************************************************************************************************
- *  END OF FILE: ICU_Types.h
+ *  FUNCTION PROTOTYPES
  *********************************************************************************************************************/
+
+/*
+ * Description :
+ * Get the Keypad pressed button
+ */
+uint8 KEYPAD_GetPressedKey(void);
+
+
+
+#endif /* KEYBAD_H_ */
+
+/******************************************************************************************************
+ * End of File
+ ******************************************************************************************************/

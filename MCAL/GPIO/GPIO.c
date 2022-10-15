@@ -25,7 +25,7 @@
  * Setup the direction of the required pin input/output.
  * If the input port number or pin number are not correct, The function will not handle the request.
  */
-void GPIO_SetupPinDirection(GPIO_PortType port, GPIO_PinType pin, uint8 direction)
+void GPIO_SetupPinDirection(GPIO_PortType port, GPIO_PinType pin, GPIO_DirectionType direction)
 {
 	if(direction == OUTPUT)
 	{

@@ -16,8 +16,8 @@
  *********************************************************************************************************************/
 
 #include "ICU.h"
+#include <avr/interrupt.h>
 #include "GPIO.h"
-#include<avr/interrupt.h>
 
 /**********************************************************************************************************************
  *  GLOBAL VARIABLES
@@ -26,17 +26,21 @@
 static volatile void(*g_callBackFunctionPtr)(void) = NULL_PTR ;
 
 
-
+/**********************************************************************************************************************
+ *  INTERRUPT SERVICE ROUTINES
+ *********************************************************************************************************************/
 ISR(TIMER1_CAPT_vect)
 {
 	if(g_callBackFunctionPtr != NULL_PTR)
 	{
 		/* Call the Call Back function in the application after the edge is detected */
-		(*g_callBackFunctionPtr)(); /* another method to call the function using pointer to function g_callBackPtr(); */
+		g_callBackFunctionPtr();
 	}
 }
 
-
+/**********************************************************************************************************************
+ *  FUNCTION DEFINITIONS
+ *********************************************************************************************************************/
 /*
  * Description : Function to initialize the ICU driver
  * 	1. Set the required clock.
@@ -48,8 +52,6 @@ void ICU_Init(const ICU_ConfigType *ICU_configPTR)
 {
 	/* Configure ICP1/PD6 as i/p pin */
 	GPIO_SetupPinDirection(PORTD_ID, PIN6_ID, INPUT);
-
-
 
 	/* Timer1 always operates in Normal Mode */
 	TCCR1A = (1<<FOC1A) | (1<<FOC1B);
@@ -94,7 +96,7 @@ void ICU_SetEdgeDetectionType(const ICU_EdgeType edgeType)
 	/*
 	 * insert the required edge type in ICES1 bit in TCCR1B Register
 	 */
-	TCCR1B = (TCCR1B & 0xBF) | ((edgeType)<<6);
+	TCCR1B = (TCCR1B & 0xBF) | (edgeType<<6);
 }
 
 

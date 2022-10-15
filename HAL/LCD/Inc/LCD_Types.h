@@ -27,20 +27,20 @@
 #endif
 
 /* LCD HW Ports and Pins IDS */
-#define LCD_RS_PORT_ID                 PORTD_ID
-#define LCD_RS_PIN_ID                  PIN4_ID
+#define LCD_RS_PORT_ID                 PORTB_ID
+#define LCD_RS_PIN_ID                  PIN0_ID
 
-#define LCD_E_PORT_ID                  PORTD_ID
-#define LCD_E_PIN_ID                   PIN5_ID
+#define LCD_E_PORT_ID                  PORTB_ID
+#define LCD_E_PIN_ID                   PIN2_ID
 
-#define LCD_DATA_PORT_ID               PORTC_ID
+#define LCD_DATA_PORT_ID               PORTA_ID
 
 #if (LCD_DATA_BITS_MODE == 4)
 
-#define LCD_DB4_PIN_ID                 PIN3_ID
-#define LCD_DB5_PIN_ID                 PIN4_ID
-#define LCD_DB6_PIN_ID                 PIN5_ID
-#define LCD_DB7_PIN_ID                 PIN6_ID
+#define LCD_DB4_PIN_ID                 PIN0_ID
+#define LCD_DB5_PIN_ID                 PIN1_ID
+#define LCD_DB6_PIN_ID                 PIN2_ID
+#define LCD_DB7_PIN_ID                 PIN3_ID
 
 #endif
 
